@@ -46,8 +46,10 @@ podTemplate(
     }
 
     container('gcc') {
-      stage('run configure and build') {
+      stage('run configure') {
         sh ./configure
+      }
+      stage('run build') {
         sh ./make
       }
     }
