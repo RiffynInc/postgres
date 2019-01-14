@@ -50,7 +50,7 @@ podTemplate(
         sh './configure'
       }
       stage('run build') {
-        sh './make'
+        sh 'make'
       }
     }
 
