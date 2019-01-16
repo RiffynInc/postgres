@@ -46,11 +46,8 @@ podTemplate(
     }
 
     container('gcc') {
-      stage('run configure') {
-        sh './configure'
-      }
-      stage('run build') {
-        sh 'make'
+      stage('build custom postgres') {
+        sh './riffyn/scripts/build-postgres.sh'
       }
     }
 
