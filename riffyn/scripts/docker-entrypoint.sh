@@ -30,8 +30,8 @@ HIVETXNFILEPATH=${HIVETXNFILEPATH}
 _pg_create_postgres_user() 
 {
     # add postgres system group and user
-    groupadd -r ${PGUSERNAME} --gid=999 
-    useradd -m -r -g ${PGUSERNAME} --uid=999 ${PGUSERNAME}
+    # groupadd -r ${PGUSERNAME} --gid=999 
+    # useradd -m -r -g ${PGUSERNAME} --uid=999 ${PGUSERNAME}
 
     # create data dir if not present
     mkdir -p ${PGDATA}
@@ -58,6 +58,7 @@ _pg_create_database_and_user()
 # start the PostgreSQL instance
 _pg_prestart()
 {
+    USER postgres
     ${PGHOME}/bin/pg_ctl -D ${PGDATA} -w start
 }
  
@@ -65,12 +66,14 @@ _pg_prestart()
 # required for docker
 _pg_start()
 {
+    USER postgres
     ${PGHOME}/bin/postgres "-D" "${PGDATA}"
 }
  
 # stop the PostgreSQL instance
 _pg_stop()
 {
+    USER postgres
     ${PGHOME}/bin/pg_ctl -D ${PGDATA} stop -m fast
 }
  
@@ -102,6 +105,7 @@ _pg_init_and_start()
 {
     # create postgres user and group 
     _pg_create_postgres_user
+    USER postgres
 
     # initialize a new cluster
     _pg_initdb
