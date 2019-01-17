@@ -15,6 +15,7 @@ apt-get install -y \
         libghc-zlib-dev \
         libcrypto++-dev \
         libxml2-dev \
+        libxml2-utils \
         libxslt1-dev \
         bzip2 \
         make \
