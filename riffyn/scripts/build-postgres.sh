@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PG_VERSION=11.1
+
 # install dependencies
 apt-get update
 apt-get install -y \
@@ -15,7 +17,7 @@ apt-get install -y \
         libghc-zlib-dev \
         libcrypto++-dev \
         libxml2-dev \
-        libxml2-utils \
+        # libxml2-utils \
         libxslt1-dev \
         bzip2 \
         make \
@@ -35,4 +37,7 @@ export LANG=en_US.utf8
 ./configure
 
 # build the system
-make
+make dist 
+
+echo "Create tar file from bundle"
+tar -czf ../postgres.tar postgresql-11.1
