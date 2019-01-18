@@ -17,7 +17,7 @@ apt-get install -y \
         libghc-zlib-dev \
         libcrypto++-dev \
         libxml2-dev \
-        # libxml2-utils \
+        libxml2-utils \
         libxslt1-dev \
         bzip2 \
         make \
@@ -32,12 +32,20 @@ apt-get install -y \
 apt-get update
 
 export LANG=en_US.utf8
-
+export PG_DIST_DIR=postgresql-$PG_VERSION
+# export PG_DIST_DIR=$PWD
 # configure the system for build
-./configure
+./configure \
+   --enable-thread-safety \
+    # --with-pgport=5432 \
+    --with-ldap \
+    # --with-python \
+    --with-openssl \
+    --with-libxml \
+    --with-libxslt
 
 # build the system
-make dist 
+make dist
 
 echo "Create tar file from bundle"
-tar -czf ../postgres.tar postgresql-11.1
+tar -czf ../postgres.tar $PG_DIST_DIR
