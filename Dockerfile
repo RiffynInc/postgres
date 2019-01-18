@@ -4,7 +4,7 @@ FROM debian
 # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
 ENV LANG en_US.utf8
 ENV PG_MAJOR 11
-ENV PG_VERSION 11.1.riffyn
+ENV PG_VERSION 11.1
 # ENV PGDATA /volume1/pgdata
 ENV PGDATABASE "public" \
     PGUSERNAME "postgres" \
@@ -13,7 +13,7 @@ ENV PGDATABASE "public" \
 #     HIVEUSERNAME "hive_password" \
 #     HIVEPASSWD "hive_password"
  
-COPY ./riffyn/scripts/docker-entrypoint.sh /
+COPY ./postgres.tar /
  
 RUN set -ex \
         \
