@@ -32,20 +32,29 @@ apt-get install -y \
 apt-get update
 
 export LANG=en_US.utf8
-export PG_DIST_DIR=postgresql-$PG_VERSION
-# export PG_DIST_DIR=$PWD
+# export PG_DIST_DIR=postgresql-$PG_VERSION
+export PG_DIST_DIR=$PWD
 # configure the system for build
-./configure \
-   --enable-thread-safety \
-    # --with-pgport=5432 \
-    --with-ldap \
-    # --with-python \
-    --with-openssl \
-    --with-libxml \
-    --with-libxslt
+./configure 
+   # --enable-thread-safety \
+   # --with-pgport=5432 \
+   # --with-ldap \
+   # --with-python \
+   # --with-openssl \
+   # --with-libxml \
+   # --with-libxslt
 
 # build the system
-make dist
+make
+
+# Copy docker files
+cp riffyn/docker-files/*  .
+# Copy metastore db-schema and transction-schema files
+cp riffyn/metastore/* .
+# Copy scripts 
+cp riffyn/scripts/* .
 
 echo "Create tar file from bundle"
-tar -czf ../postgres.tar $PG_DIST_DIR
+cd..
+tar -czf postgres.tar $PG_DIST_DIR
+

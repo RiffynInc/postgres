@@ -58,7 +58,7 @@ _pg_create_database_and_user()
 # start the PostgreSQL instance
 _pg_prestart()
 {
-    USER postgres
+    su postgres
     ${PGHOME}/bin/pg_ctl -D ${PGDATA} -w start
 }
  
@@ -66,14 +66,14 @@ _pg_prestart()
 # required for docker
 _pg_start()
 {
-    USER postgres
+    su postgres
     ${PGHOME}/bin/postgres "-D" "${PGDATA}"
 }
  
 # stop the PostgreSQL instance
 _pg_stop()
 {
-    USER postgres
+    su postgres
     ${PGHOME}/bin/pg_ctl -D ${PGDATA} stop -m fast
 }
  
@@ -105,7 +105,7 @@ _pg_init_and_start()
 {
     # create postgres user and group 
     _pg_create_postgres_user
-    USER postgres
+    su postgres
 
     # initialize a new cluster
     _pg_initdb

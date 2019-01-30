@@ -9,17 +9,20 @@ ENV PG_VERSION 11.1
 ENV PGDATABASE "public" \
     PGUSERNAME "postgres" \
     PGPASSWORD "postgres" 
-#     HIVEDATABASENAME "hive_user" \
-#     HIVEUSERNAME "hive_password" \
+#     HIVEDATABASENAME "metastore_db" \
+#     HIVEUSERNAME "hive_user" \
 #     HIVEPASSWD "hive_password"
  
 COPY ./postgres.tar /
+RUN tar -xvf /postgres.tar
+
+WORKDIR /postgres-riffyn-REL_11_STABLE
+RUN cp riffyn/docker-files/* /
  
 RUN set -ex \
-        \
         && apt-get update && apt-get install -y \
            ca-certificates \
-           curl \
+        #  curl \
            procps \
            sysstat \
         #    libldap2-dev \
@@ -44,9 +47,11 @@ RUN set -ex \
         && localedef -i en_US -c -f UTF-8 en_US.UTF-8 \
         && apt-get update \
         && groupadd -r ${PGUSERNAME} --gid=999 \
-        && useradd -m -r -g ${PGUSERNAME} --uid=999 ${PGUSERNAME}
- 
+        && useradd -m -r -g ${PGUSERNAME} --uid=999 ${PGUSERNAME} \
+        && su ${PGUSERNAME} -c "make install" \
+        && su ${PGUSERNAME} -c "make -C contrib install" \
+
 ENV LANG en_US.utf8
-USER postgres
+USER ${PGUSERNAME}
 EXPOSE 5432
 ENTRYPOINT ["/docker-entrypoint.sh"]
