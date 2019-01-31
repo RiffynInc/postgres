@@ -55,6 +55,6 @@ cp riffyn/metastore/* .
 cp riffyn/scripts/* .
 
 echo "Create tar file from bundle"
-cd..
+cd ..
 tar -czf postgres.tar $PG_DIST_DIR
 
