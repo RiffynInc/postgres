@@ -13,8 +13,10 @@ ENV PGDATABASE "public" \
 #     HIVEUSERNAME "hive_user" \
 #     HIVEPASSWD "hive_password"
  
-COPY postgres.tar ./
-RUN tar -xvf /postgres.tar
+RUN pwd
+RUN ls -ll
+ADD postgres.tar ./
+# RUN tar -xvf /postgres.tar
 
 WORKDIR /postgres-riffyn-REL_11_STABLE
 RUN cp riffyn/docker-files/* /
