@@ -13,7 +13,7 @@ ENV PGDATABASE "public" \
 #     HIVEUSERNAME "hive_user" \
 #     HIVEPASSWD "hive_password"
  
-COPY ./postgres.tar /
+COPY postgres.tar ./
 RUN tar -xvf /postgres.tar
 
 WORKDIR /postgres-riffyn-REL_11_STABLE

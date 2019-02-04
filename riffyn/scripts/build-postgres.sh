@@ -57,6 +57,7 @@ cp riffyn/scripts/* .
 echo "Create tar file from bundle"
 echo $PG_DIST_DIR
 postgres_dir_name=$(basename $PG_DIST_DIR)
-tar -czf ../postgres.tar . && cd ..
+tar -cvf ../postgres.tar . && cd ..
+ls -la 
 
 
