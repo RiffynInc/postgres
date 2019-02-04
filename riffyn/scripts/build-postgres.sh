@@ -61,5 +61,7 @@ tar -czf ../postgres.tar .
 cd ..
 pwd
 ls -la 
+mkdir -p postgres
+mv postgres.tar postgres
 
 
