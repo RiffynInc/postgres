@@ -15,11 +15,13 @@ ENV PGDATABASE "public" \
  
 RUN pwd
 RUN ls -ll
-ADD postgres.tar ./
+WORKDIR /srv/riffyn/src
+ADD postgres_dist.tar.gz ./
 # RUN tar -xvf /postgres.tar
+WORKDIR /srv/riffyn/src/postgres_dist
+RUN ls -ll
 
-WORKDIR /postgres-riffyn-REL_11_STABLE
-RUN cp riffyn/docker-files/* /
+# RUN cp riffyn/docker-files/* /
  
 RUN set -ex \
         && apt-get update && apt-get install -y \
