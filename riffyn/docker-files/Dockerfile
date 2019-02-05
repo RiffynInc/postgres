@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM debian
+FROM gcc
  
 # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
 ENV LANG en_US.utf8

@@ -35,7 +35,7 @@ export LANG=en_US.utf8
 # export PG_DIST_DIR=postgresql-$PG_VERSION
 export PG_DIST_DIR=$PWD
 # configure the system for build
-# ./configure 
+./configure 
    # --enable-thread-safety \
    # --with-pgport=5432 \
    # --with-ldap \
@@ -45,7 +45,7 @@ export PG_DIST_DIR=$PWD
    # --with-libxslt
 
 # build the system
-# make
+make
 
 # Copy docker files
 cp riffyn/docker-files/*  .
