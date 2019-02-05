@@ -59,5 +59,6 @@ echo $PG_DIST_DIR
 postgres_dir_name=$(basename $PG_DIST_DIR)
 tar -czf ../postgres_dist.tar.gz .
 mv ../postgres_dist.tar.gz ./
+ls -ll
 
 
