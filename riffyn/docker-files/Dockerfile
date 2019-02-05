@@ -15,11 +15,10 @@ ENV PGDATABASE "public" \
  
 RUN pwd
 RUN ls -ll
-WORKDIR /srv/riffyn/src
+WORKDIR /srv/riffyn/postgres_src
 ADD postgres_dist.tar.gz ./
 RUN ls -ll
 # RUN tar -xvf /postgres.tar
-WORKDIR /srv/riffyn/src/postgres_dist
 RUN ls -ll
 
 # RUN cp riffyn/docker-files/* /
@@ -51,12 +50,12 @@ RUN set -ex \
         && rm -rf /var/lib/apt/lists/* \
         && localedef -i en_US -c -f UTF-8 en_US.UTF-8 \
         && apt-get update \
-        && groupadd -r ${PGUSERNAME} --gid=999 \
-        && useradd -m -r -g ${PGUSERNAME} --uid=999 ${PGUSERNAME} \
-        && su ${PGUSERNAME} -c "make install" \
-        && su ${PGUSERNAME} -c "make -C contrib install" \
+        && groupadd -r postgres --gid=999 \
+        && useradd -m -r -g postgres --uid=999 postgres \
+        && su postgres -c "make install" \
+        && su postgres -c "make -C contrib install" \
 
 ENV LANG en_US.utf8
-USER ${PGUSERNAME}
+USER postgres
 EXPOSE 5432
 ENTRYPOINT ["/docker-entrypoint.sh"]
