@@ -1,0 +1,9 @@
+# .dockerignore
+
+# Mac OS X files
+**/.DS_Store
+
+# git files
+.git/
+
+

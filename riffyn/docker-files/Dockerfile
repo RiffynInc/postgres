@@ -17,6 +17,7 @@ RUN pwd
 RUN ls -ll
 WORKDIR /srv/riffyn/src
 ADD postgres_dist.tar.gz ./
+RUN ls -ll
 # RUN tar -xvf /postgres.tar
 WORKDIR /srv/riffyn/src/postgres_dist
 RUN ls -ll
