@@ -14,13 +14,13 @@ podTemplate(
                       resourceLimitCpu:      '100m',
                       resourceRequestMemory: '100Mi',
                       resourceLimitMemory:   '100Mi'),
-    containerTemplate(name: 'gcc',
-                      image: 'gcc:7.3',
-                      command: 'cat',
-                      ttyEnabled: true,
-                      resourceLimitCpu:      '100m',
-                      resourceRequestMemory: '400Mi',
-                      resourceLimitMemory:   '400Mi'),
+    // containerTemplate(name: 'gcc',
+    //                   image: 'gcc:7.3',
+    //                   command: 'cat',
+    //                   ttyEnabled: true,
+    //                   resourceLimitCpu:      '100m',
+    //                   resourceRequestMemory: '400Mi',
+    //                   resourceLimitMemory:   '400Mi'),
     containerTemplate(name: 'docker',
                       image: 'docker:1.12.6',
                       command: 'cat',
@@ -45,14 +45,18 @@ podTemplate(
       }
     }
 
-    container('gcc') {
-      stage('build custom postgres') {
-        sh './riffyn/scripts/build-postgres.sh'
-      }
-    }
+    // container('gcc') {
+    //   stage('build custom postgres') {
+    //     sh './riffyn/scripts/build-postgres.sh'
+    //   }
+    // }
 
     container('docker') {
       def app
+      // stage('build custom postgres') {
+      //   sh './riffyn/scripts/build-postgres.sh'
+      // }
+
       stage('Build container') {
         app = docker.build("riffyninc/postgres:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
       }
