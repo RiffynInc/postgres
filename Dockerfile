@@ -16,6 +16,9 @@ ENV HIVEDATABASENAME "metastore_db" \
    HIVEPASSWD "hive_password" 
 
 # 
+WORKDIR /srv/riffyn/postgres_src
+ADD postgres_dist.tar.gz ./
+
 RUN mkdir -p /riffyn/scripts
 COPY riffyn/scripts/*.sh  /riffyn/scripts/ 
 COPY riffyn/metastore/*.sql  /riffyn/scripts/
