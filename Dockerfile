@@ -36,76 +36,78 @@ ENV HIVESCHEMAFILEPATH /riffyn/scripts/hive-schema-2.3.0.postgres.sql \
  
 ######
 ###### 
-# RUN set -ex \
-#         \
-#         && apt-get update && apt-get install -y \
-#            curl \
-#            procps \
-#            sysstat \
-#            libldap2-dev \
-#            libpython-dev \
-#            libreadline-dev \
-#            libssl-dev \
-#            bison \
-#            flex \
-#            libghc-zlib-dev \
-#            libcrypto++-dev \
-#            libxml2-dev \
-#            libxslt1-dev \
-#            bzip2 \
-#            make \
-#            gcc \
-#            unzip \
-#            python \
-#            locales \
-#         \
-#         && rm -rf /var/lib/apt/lists/* \
-#         && localedef -i en_US -c -f UTF-8 en_US.UTF-8 \
-#         \
-#         && groupadd -r postgres --gid=999 \
-#         && useradd -m -r -g postgres --uid=999 postgres \
-#         && chown postgres:postgres /u01/ \
-#         && mkdir -p "$PGDATA" \
-#         && chown -R postgres:postgres "$PGDATA" \
-#         && chmod 700 "$PGDATA" \
-#         \
-#         && ./configure \
-#             # --enable-integer-datetimes \
-#             # --enable-thread-safety \
-#             # --with-pgport=5432 \
-#             # --prefix=/u01/app/postgres/product/$PG_VERSION \\
-#             # --with-ldap \
-#             # --with-python \
-#             # --with-openssl \
-#             # --with-libxml \
-#             # --with-libxslt" \
-#         && make \
-#         && make install \
-#         && make -C contrib install \
-#         && rm -rf /home/postgres/src \
-#         && chown -R postgres:postgres /usr/local/pgsql \
-#         \
-#         && apt-get update && apt-get purge --auto-remove -y \
-#            libldap2-dev \
-#            libpython-dev \
-#            libreadline-dev \
-#            libssl-dev \
-#            libghc-zlib-dev \
-#            libcrypto++-dev \
-#            libxml2-dev \
-#            libxslt1-dev \
-#            bzip2 \
-#            gcc \
-#            make \
-#            unzip \
-#         && apt-get install -y libxml2 \
-#         && rm -rf /var/lib/apt/lists/*
+RUN set -ex \
+     \
+     && apt-get update && apt-get install -y \
+        curl \
+        procps \
+        sysstat \
+        libldap2-dev \
+        libpython-dev \
+        libreadline-dev \
+        libssl-dev \
+        bison \
+        flex \
+        libghc-zlib-dev \
+        libcrypto++-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        bzip2 \
+        make \
+        gcc \
+        unzip \
+        python \
+        locales \
+     \
+     && rm -rf /var/lib/apt/lists/* \
+     && localedef -i en_US -c -f UTF-8 en_US.UTF-8 \
+     \
+     && groupadd -r postgres --gid=999 \
+     && useradd -m -r -g postgres --uid=999 postgres \
+#     && chown postgres:postgres /u01/ \
+     && mkdir -p "$PGDATA" \
+     && chown -R postgres:postgres "$PGDATA" \
+     && chmod 700 "$PGDATA" \
+     \
+     && ./configure \
+         # --enable-integer-datetimes \
+         # --enable-thread-safety \
+         # --with-pgport=5432 \
+         # --prefix=/u01/app/postgres/product/$PG_VERSION \\
+         # --with-ldap \
+         # --with-python \
+         # --with-openssl \
+         # --with-libxml \
+         # --with-libxslt" \
+     && make \
+     && make install \
+     && make -C contrib install \
+     && rm -rf /home/postgres/src \
+     && chown -R postgres:postgres /usr/local/pgsql \
+     \
+     && apt-get update && apt-get purge --auto-remove -y \
+        libldap2-dev \
+        libpython-dev \
+        libreadline-dev \
+        libssl-dev \
+        libghc-zlib-dev \
+        libcrypto++-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        bzip2 \
+        gcc \
+        make \
+        unzip \
+     && apt-get install -y libxml2 \
+     && rm -rf /var/lib/apt/lists/*
 ##########
 ##########
-RUN pwd
-RUN ls -ll
-RUN ls -la riffyn/scripts
-RUN /riffyn/scripts/build-postgres.sh
+#RUN pwd
+#RUN ls -ll
+#RUN ls -la riffyn/scripts
+#RUN /riffyn/scripts/build-postgres.sh
+########
+#######
 
 ENV LANG en_US.utf8
 USER postgres
