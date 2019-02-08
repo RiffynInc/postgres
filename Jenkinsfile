@@ -26,8 +26,8 @@ podTemplate(
                       command: 'cat',
                       ttyEnabled: true,
                       resourceLimitCpu:      '100m',
-                      resourceRequestMemory: '200Mi',
-                      resourceLimitMemory:   '200Mi')
+                      resourceRequestMemory: '400Mi',
+                      resourceLimitMemory:   '400Mi')
   ],
   volumes:[
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),

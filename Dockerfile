@@ -74,11 +74,11 @@ RUN set -ex \
      \
      && ./configure \
          # --enable-integer-datetimes \
-         # --enable-thread-safety \
+         --enable-thread-safety \
          # --with-pgport=5432 \
          # --prefix=/u01/app/postgres/product/$PG_VERSION \\
          # --with-ldap \
-         # --with-python \
+         --with-python \
          # --with-openssl \
          # --with-libxml \
          # --with-libxslt" \
