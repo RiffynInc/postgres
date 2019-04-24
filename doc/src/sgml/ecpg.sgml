@@ -4108,7 +4108,7 @@ typedef struct sqlvar_struct sqlvar_t;
       is used as a member of the <type>sqlvar_t</type> structure.  The
       definition of the structure is:
 <programlisting>
-#define NAMEDATALEN 64
+#define NAMEDATALEN 1024
 
 struct sqlname
 {
